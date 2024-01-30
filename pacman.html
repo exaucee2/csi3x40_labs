@@ -26,8 +26,42 @@
           return gameBoard;
         }
         
-        const game = createGame(10);
+        let game = createGame(10);
         document.body.innerHTML = '<pre>' + game.join(' ') + '</pre>';
+
+        function moveLeft(game) {
+          const pacmanIndex = game.indexOf('C');
+          
+          if (pacmanIndex > 0) {
+            game[pacmanIndex] = '';
+            game[pacmanIndex - 1] = 'C';
+          }
+          
+          return game;
+        }
+
+        function moveRight(game) {
+          let pacmanIndex = game.indexOf('C');
+          
+          if (pacmanIndex < game.length - 1) {
+            game[pacmanIndex] = '';
+            game[pacmanIndex + 1] = 'C';
+          }
+          
+          return game;
+        }
+
+        // Exemple d'utilisation avec une taille de plateau de 10
+        //let game = createGame(10);
+        console.log("Plateau initial :", game);
+
+        // Déplacer Pacman vers la gauche
+        game = moveLeft(game);
+        console.log("Plateau après le déplacement vers la gauche :", game);
+
+        // Déplacer Pacman vers la droite
+        game = moveRight(game);
+        console.log("Plateau après le déplacement vers la droite :", game);
     </script>
 </body>
 </html>
